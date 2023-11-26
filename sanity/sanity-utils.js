@@ -4,26 +4,30 @@ const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   apiVersion: "2023-11-26",
-  useCdn: true,
+  useCdn: false,
 });
 
-const getAllBlogs = async () => {
-  const query = groq`*[_type == "blog"] | order(createdAt desc) {
+export const getAllBlogs = async () => {
+  
+  const blogs = await client.fetch(groq`*[_type == "blog"]{
     title,
     description,
+    tags,
     createdAt,
     paragraphs,
     "image": image.asset->url,
     "slug": slug.current
-  }`;
+  }`,
+  {next: {
+    revalidateTag: 3600, //revalidate every hour
+ }});
 
-  const blogs = await client.fetch(query);
 
   return blogs;
 };
 
 
-const getBlogBySlug = async (slug) => {
+export const getBlogBySlug = async (slug) => {
   // Define the query for fetching a blog by slug
   const query = groq`*[_type == "blog" && slug.current == $slug][0] {
     title,
@@ -34,9 +38,9 @@ const getBlogBySlug = async (slug) => {
   }`;
 
   // Fetch data from Sanity
-  const blog = await client.fetch(query, { slug });
+  const blog = await client.fetch(query,{ slug});
 
   return blog;
 };
 
-export { getAllBlogs, getBlogBySlug };
+

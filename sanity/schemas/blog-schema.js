@@ -35,12 +35,27 @@ const blog = {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [{ type: "string" }],
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    },
+   
+    {
       name: "paragraphs",
       title: "Paragraphs",
       type: "array",
       of: [{ type: "block" }],
       validation: (Rule) => Rule.required(),
     },
+    
     {
       name: "createdAt",
       title: "Created At",
