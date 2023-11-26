@@ -1,27 +1,22 @@
-"use client"
 import Image from "next/image"
 import Link from 'next/link';
 
 function Header() {
- 
   return (
-    <div className="p-3 border-b-2 border-[#F5F3FF]">
-        <div className="max-w-7xl mx-auto flex justify-between">
-         
+    <div className="p-10">
+      <div className="max-w-7xl mx-auto flex justify-between">
         <Link href="/">
-        <div className="flex items-center cursor-pointer">
-        <Image src="/logo.png" alt="logo" width={50} height={50} />
-        <h1 className="ml-2 text-2xl lg:text-3xl font-bold">Blog</h1>
-        </div>
+          <div className="flex items-center cursor-pointer">
+            <h1 className="ml-2 text-2xl lg:text-3xl">Coding Blog</h1>
+          </div>
         </Link>
 
         <div className="flex items-center relative">
-           
+          {/* Add your additional header content here */}
         </div>
-
-        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;
