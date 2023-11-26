@@ -12,7 +12,7 @@ export default async function page() {
         blogs?.map((blog) => {
           return (
             <Link href={`/blog/${blog.slug}`}>
-            <div className="">
+            <div>
               <h1>{blog.title}</h1>
               <p>{blog.description}</p>
               <p>{blog.createdAt}</p>
