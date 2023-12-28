@@ -19,7 +19,7 @@ export const getAllBlogs = async () => {
     "slug": slug.current
   }`,
   {next: {
-    revalidateTag: 3600, //revalidate every hour
+    revalidateTag: 360, //revalidate every hour
  }});
 
 
